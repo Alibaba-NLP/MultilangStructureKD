@@ -10,9 +10,10 @@ In this repo, we include the following attributes:
 |Sequence Labeling|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|Structure-level knowledge distillation [(Wang et al., 2020)](https://arxiv.org/abs/2004.03846)|
 |Dependency Parsing|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:x:|State-of-the-Art Parser for [Enhanced Universal Dependencies](https://universaldependencies.org/iwpt20/data.html) in IWPT 2020 shared task [(Wang et al., 2020)](https://arxiv.org/abs/2006.01414) and State-of-the-Art Parser for Semantic Dependency Parsing [(Wang et al., 2019)](https://arxiv.org/pdf/1906.07880.pdf)|
 
-## Training Sequence Labelers
 
-### Requirements and Installation
+
+
+## Requirements and Installation
 
 The project is based on PyTorch 1.1+ and Python 3.6+. We create the virtual environment based on [anaconda](https://www.anaconda.com/) (The requirements are directly extracted from my environment, therefore there exists some non-essential packages like TensorFlow, I will update the requirements in the future):
 
@@ -21,6 +22,8 @@ conda create --name parser --file requirements2.txt
 source activate parser
 pip install -r requirements.txt
 ```
+
+## Training Sequence Labelers
 
 ### Teacher Models
 
