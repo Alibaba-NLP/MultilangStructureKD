@@ -199,7 +199,7 @@ If you feel the **second-order semantic dependency parser** helpful, please cite
 }
 ```
 
-If run experiments on **Enhanced Universal Dependencies**, please cite:
+If you run experiments on **Enhanced Universal Dependencies**, please cite:
 
 ```
 @inproceedings{wang-etal-2020-enhanced,
