@@ -125,7 +125,9 @@ As we described in the paper, we use the labeled F1 scores (originated from sema
 python train_with_teacher.py --config config/xlmr_word_origflair_1000epoch_0.1inter_2000batch_0.002lr_400hidden_ta_monolingual_nocrf_fast_2nd_unrel_250upsample_nodev_enhancedud27.yaml --parse --target_dir iwpt2020_test/ta --keep_order --batch_size 1000
 ```
 
-Then evaluate the result by the official script: (Note that the official evaluation script does not check the connectivity, if you go strict process of official submission, please fix other [validation issues](https://universaldependencies.org/iwpt20/task_and_evaluation.html) manually. But for the ELAS, the connectivity does not affect the result a lot.)
+Then evaluate the result by the official script [here](https://github.com/Alibaba-NLP/MultilangStructureKD/tree/master/EUD)
+
+Note that the official evaluation script does not check the connectivity, if you go strict process of official submission, please fix other [validation issues](https://universaldependencies.org/iwpt20/task_and_evaluation.html) manually. But for the ELAS, the connectivity does not affect the result a lot.
 
 ### Semantic Dependency Parsing (SDP)
 
