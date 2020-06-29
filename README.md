@@ -164,7 +164,7 @@ Please cite the following paper when training the multilingual sequence labeling
 
 ### For Dependency Parsers
 
-If you feel the second-order semantic dependency parser helpful, please cite:
+If you feel the **second-order semantic dependency parser** helpful, please cite:
 
 ```
 @inproceedings{wang-etal-2019-second,
@@ -196,7 +196,7 @@ If you feel the second-order semantic dependency parser helpful, please cite:
 }
 ```
 
-If run experiments on Enhanced Universal Dependencies, please cite:
+If run experiments on **Enhanced Universal Dependencies**, please cite:
 
 ```
 @inproceedings{wang-etal-2020-enhanced,
