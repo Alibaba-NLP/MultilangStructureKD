@@ -10,7 +10,6 @@ In this repo, we include the following attributes:
 |Sequence Labeling|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|Structure-level knowledge distillation [(Wang et al., 2020)](https://arxiv.org/abs/2004.03846)|
 |Dependency Parsing|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:x:|State-of-the-Art Parser for [Enhanced Universal Dependencies](https://universaldependencies.org/iwpt20/data.html) in IWPT 2020 shared task [(Wang et al., 2020)](https://arxiv.org/abs/2006.01414) and State-of-the-Art Parser for Semantic Dependency Parsing [(Wang et al., 2019)](https://arxiv.org/pdf/1906.07880.pdf)|
 
----
 ## Training Sequence Labelers
 
 ### Requirements and Installation
@@ -87,8 +86,6 @@ python train_with_teacher.py --config config/multi_bert_10epoch_2000batch_0.0000
 
 To be updated -->
 
----
-
 ## Training Dependency Parsers
 
 The dependency parsering module is based on the code of [parser](https://github.com/yzhangcs/parser), our parser is also able to parse the semantic dependency parsing [(Oepen et al., 2014)](aclweb.org/anthology/S14-2008) with second-order mean-field variational inference [(Wang et al., 2019)](https://www.aclweb.org/anthology/P19-1454).
@@ -134,13 +131,11 @@ The code for EUD parsing is also applicable for SDP parsing. We provide a PyTorc
 
 We provide a detailed description of our config file in [config](https://github.com/Alibaba-NLP/MultilangStructureKD/tree/master/config).
 
----
-
 ## Citing Us
 
 ### For Sequence Labelers
 
-Please cite the following paper when training the multilingual sequence labeling models: 
+Please cite the following paper when training the **multilingual sequence labeling models**: 
 
 ```
 @inproceedings{wang-etal-2020-structure,
