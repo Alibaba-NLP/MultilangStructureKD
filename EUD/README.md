@@ -1,7 +1,7 @@
 # Enhanced Universal Dependency Parsing
 
 [Data](https://universaldependencies.org/iwpt20/data.html)
-In our settings, we concat all treebanks for each language.
+In our settings, we concat all treebanks for each language
 
 ## Preprocessing 
 

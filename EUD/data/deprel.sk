@@ -1,0 +1,13 @@
+acl:relcl
+advmod:emph
+aux:pass
+csubj:pass
+det:numgov
+det:nummod
+expl:pass
+expl:pv
+flat:foreign
+nsubj:pass
+nummod:gov
+obl:agent
+obl:arg

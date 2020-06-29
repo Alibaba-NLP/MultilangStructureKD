@@ -1,0 +1,71 @@
+ModelFinetuner:
+  direct_upsample_rate: -1
+  distill_mode: false
+  down_sample_amount: -1
+  ensemble_distill_mode: false
+  language_resample: false
+  optimizer: Adam
+  train_with_professor: false
+dependency:
+  Corpus: CTB
+embeddings:
+  XLMRoBERTaEmbeddings:
+    layers: '-1'
+    pooling_operation: mean
+enhancedud:
+  Corpus: UD_Lithuanian
+is_teacher_list: true
+is_toy: false
+model:
+  SemanticDependencyParser:
+    binary: true
+    factorize: true
+    hidden_size: 400
+    init_std: 0.25
+    interpolation: 0.1
+    iterations: 3
+    lstm_dropout: 0.33
+    mlp_dropout: 0.33
+    n_mlp_arc: 500
+    n_mlp_rel: 100
+    n_mlp_sec: 150
+    rnn_layers: 3
+    tree: true
+    use_cop: true
+    use_crf: false
+    use_gp: true
+    use_rnn: true
+    use_second_order: true
+    use_sib: true
+    word_dropout: 0.33
+model_name: xlmr_1000epoch_0.1inter_2000batch_0.002lr_400hidden_lt_monolingual_nocrf_fast_2nd_nodev_enhancedud15
+target_dir: resources/taggers/
+targets: enhancedud
+teacher_annealing: false
+train:
+  best_k: 5
+  betas:
+  - 0.9
+  - 0.9
+  calc_teachers_target_loss: false
+  entropy_loss_rate: 0.001
+  fine_tune_mode: false
+  freezing: false
+  language_attention_entropy: false
+  language_attention_warmup: false
+  language_attention_warmup_and_fix: false
+  learning_rate: 0.002
+  lr_rate: 1
+  max_epochs: 1000
+  min_freq: 2
+  mini_batch_size: 2000
+  monitor_test: false
+  rootschedule: false
+  save_final_model: false
+  sort_data: true
+  train_language_attention_by_dev: false
+  train_with_dev: false
+  true_reshuffle: false
+  use_unlabeled_data: false
+  use_warmup: false
+trainer: ModelFinetuner
