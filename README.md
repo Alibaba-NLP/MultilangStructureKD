@@ -132,7 +132,7 @@ The code for EUD parsing is also applicable for SDP parsing. We provide a PyTorc
 
 ### Write Your Own Config File
 
-We provide a detailed description of our config file in `config`.
+We provide a detailed description of our config file in [config](https://github.com/Alibaba-NLP/MultilangStructureKD/tree/master/config).
 
 ---
 
