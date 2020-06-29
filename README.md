@@ -68,6 +68,7 @@ python train_with_teacher.py --config config/multi_bert_300epoch_0.5anneal_2000b
 python train_with_teacher.py --config config/multi_bert_300epoch_0.5anneal_2000batch_0.1lr_600hidden_multilingual_crf_sentloss_10patience_distill_fast_1best_old_relearn_nodev_fast_new_ner0.yaml
 ```
 
+---
 
 #### Finetuning M-BERT **without** the CRF layer
 
@@ -76,6 +77,8 @@ Following the example of [transformers](https://github.com/huggingface/transform
 ```
 python train_with_teacher.py --config config/multi_bert_10epoch_2000batch_0.00005lr_multilingual_nocrf_sentloss_baseline_fast_finetune_relearn_nodev_ner0.yaml
 ```
+
+---
 
 #### Finetuning M-BERT **with** the CRF layer
 
