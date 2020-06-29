@@ -110,7 +110,7 @@ python train_with_teacher.py --config config/multi_bert_10epoch_0.5inter_3000bat
 
 ### [Enhanced Universal Dependency (EUD)](https://universaldependencies.org/iwpt20/data.html) Parsing
 
-To reproduce [our results](https://arxiv.org/abs/2004.03846) on EUD Parsing, we provide the [conversion scripts](https://universaldependencies.org/iwpt20/task_and_evaluation.html) for the official dataset. And we also provide our processed training/development/test set for the task. To train the model (here we take the Tamil dataset as an example), run (please refer to `config` for config files of other languages):
+To reproduce [our results](https://arxiv.org/abs/2004.03846) on EUD Parsing, we provide the [conversion scripts](https://universaldependencies.org/iwpt20/task_and_evaluation.html) for the official dataset. And we also provide our processed training/development/test set for the task. To train the model (here we take the Tamil dataset as an example), run (please refer to [config](https://github.com/Alibaba-NLP/MultilangStructureKD/tree/master/config) for config files of other languages):
 
 ```
 python train_with_teacher.py --config config/xlmr_word_origflair_1000epoch_0.1inter_2000batch_0.002lr_400hidden_ta_monolingual_nocrf_fast_2nd_unrel_250upsample_nodev_enhancedud27.yaml
@@ -122,7 +122,7 @@ As we described in the paper, we use the labeled F1 scores (originated from sema
 python train_with_teacher.py --config config/xlmr_word_origflair_1000epoch_0.1inter_2000batch_0.002lr_400hidden_ta_monolingual_nocrf_fast_2nd_unrel_250upsample_nodev_enhancedud27.yaml --parse --target_dir iwpt2020_test/ta --keep_order --batch_size 1000
 ```
 
-Then evaluate the result by the official script: (Note that the official evaluation script does not check the connectivity, if you go strict process of official submission, please fix other [validation issues]() manually. But for the ELAS, the connectivity does not affect the result a lot.)
+Then evaluate the result by the official script: (Note that the official evaluation script does not check the connectivity, if you go strict process of official submission, please fix other [validation issues](https://universaldependencies.org/iwpt20/task_and_evaluation.html) manually. But for the ELAS, the connectivity does not affect the result a lot.)
 
 ### Semantic Dependency Parsing (SDP)
 
