@@ -15,7 +15,7 @@ In this repo, we include the following attributes:
 
 ### Requirements and Installation
 
-The project is based on PyTorch 1.1+ and Python 3.6+. We create the virtual environment based on [anaconda](https://www.anaconda.com/) (The requirements are directly extracted from my environment, therefore there exists some non-essential packages like TensorFlow, I will update the requirements in the future):
+The project is based on PyTorch 1.1+ and Python 3.6+. We create the virtual environment based on [anaconda](https://www.anaconda.com/) (The requirements are directly extracted from my environment, therefore there exists some non-essential packages like TensorFlow, we will update the requirements in the future):
 
 ```
 conda create --name parser --file requirements2.txt
@@ -136,7 +136,11 @@ We provide a detailed description of our config file in `config`.
 
 ### GPU Memory
 
-I have update the code for better GPU utilization, therefore training a multilingual sequence labeling with knowledge distillation only needs 8\~9 GB for the GPU Memory now rather than 14\~15 GB reported in the paper.
+We have update the code for better GPU utilization, therefore training a multilingual sequence labeling with knowledge distillation only needs 8\~9 GB for the GPU Memory now rather than 14\~15 GB reported in the paper.
+
+### Faster Speed
+
+We modified the code of flair for a signficantly faster training speed. For example, we update the `CharacterEmbeddings` class in `embeddings.py` to `FastCharacterEmbeddings` for significantly faster character embedding speed and the `WordEmbeddings` is updated to `FastWordEmbeddings` so that the word embeddings can be updated during training. For training sequence labelers, our code is more than 1.5 times faster than the origin version with word and character embeddings.
 
 ---
 
