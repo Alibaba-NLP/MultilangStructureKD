@@ -10,10 +10,10 @@ In this repo, we include the following attributes:
 |Sequence Labeling|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|Structure-level knowledge distillation [(Wang et al., 2020)](https://arxiv.org/abs/2004.03846)|
 |Dependency Parsing|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:x:|State-of-the-Art Parser for [Enhanced Universal Dependencies](https://universaldependencies.org/iwpt20/data.html) in IWPT 2020 shared task [(Wang et al., 2020)](https://arxiv.org/abs/2006.01414) and State-of-the-Art Parser for Semantic Dependency Parsing [(Wang et al., 2019)](https://arxiv.org/pdf/1906.07880.pdf)|
 
+---
+## Training Sequence Labelers
 
-
-
-## Requirements and Installation
+### Requirements and Installation
 
 The project is based on PyTorch 1.1+ and Python 3.6+. We create the virtual environment based on [anaconda](https://www.anaconda.com/) (The requirements are directly extracted from my environment, therefore there exists some non-essential packages like TensorFlow, I will update the requirements in the future):
 
@@ -23,18 +23,16 @@ source activate parser
 pip install -r requirements.txt
 ```
 
-## Training Sequence Labelers
-
 ### Teacher Models
 
 Let's train multilingual CoNLL named entity recognition (NER) model as an example. First we need to prepare the teacher models by downloading the pretrained teacher models on [google drive (uploading...)]() and put these models in `resources/taggers`. 
 
 An alternative way is training the teacher models by your self: 
 ```
-python train_with_teacher.py --config config/multi_bert_origflair_300epoch_2000batch_0.1lr_256hidden_de_monolingual_crf_sentloss_10patience_baseline_nodev_ner0.yaml
-python train_with_teacher.py --config config/multi_bert_origflair_300epoch_2000batch_0.1lr_256hidden_en_monolingual_crf_sentloss_10patience_baseline_nodev_ner0.yaml
-python train_with_teacher.py --config config/multi_bert_origflair_300epoch_2000batch_0.1lr_256hidden_es_monolingual_crf_sentloss_10patience_baseline_nodev_ner1.yaml
-python train_with_teacher.py --config config/multi_bert_origflair_300epoch_2000batch_0.1lr_256hidden_nl_monolingual_crf_sentloss_10patience_baseline_nodev_ner1.yaml
+python train_with_teacher.py --config config/multi_bert_origflair_300epoch_2000batch_1lr_256hidden_de_monolingual_crf_sentloss_10patience_baseline_nodev_ner0.yaml
+python train_with_teacher.py --config config/multi_bert_origflair_300epoch_2000batch_1lr_256hidden_en_monolingual_crf_sentloss_10patience_baseline_nodev_ner0.yaml
+python train_with_teacher.py --config config/multi_bert_origflair_300epoch_2000batch_1lr_256hidden_es_monolingual_crf_sentloss_10patience_baseline_nodev_ner1.yaml
+python train_with_teacher.py --config config/multi_bert_origflair_300epoch_2000batch_1lr_256hidden_nl_monolingual_crf_sentloss_10patience_baseline_nodev_ner0.yaml
 ```
 
 ### Training the Multilingual Model
@@ -68,7 +66,6 @@ python train_with_teacher.py --config config/multi_bert_300epoch_0.5anneal_2000b
 python train_with_teacher.py --config config/multi_bert_300epoch_0.5anneal_2000batch_0.1lr_600hidden_multilingual_crf_sentloss_10patience_distill_fast_1best_old_relearn_nodev_fast_new_ner0.yaml
 ```
 
----
 
 #### Finetuning M-BERT **without** the CRF layer
 
@@ -77,8 +74,6 @@ Following the example of [transformers](https://github.com/huggingface/transform
 ```
 python train_with_teacher.py --config config/multi_bert_10epoch_2000batch_0.00005lr_multilingual_nocrf_sentloss_baseline_fast_finetune_relearn_nodev_ner0.yaml
 ```
-
----
 
 #### Finetuning M-BERT **with** the CRF layer
 
@@ -91,6 +86,8 @@ python train_with_teacher.py --config config/multi_bert_10epoch_2000batch_0.0000
 <!-- #### Model Performance
 
 To be updated -->
+
+---
 
 ## Training Dependency Parsers
 
@@ -113,7 +110,7 @@ python train_with_teacher.py --config config/multi_bert_10epoch_0.5inter_3000bat
 
 ### [Enhanced Universal Dependency (EUD)](https://universaldependencies.org/iwpt20/data.html) Parsing
 
-To reproduce [our results](https://arxiv.org/abs/2004.03846) on EUD Parsing, we provide the [conversion scripts](https://universaldependencies.org/iwpt20/task_and_evaluation.html) for the official dataset. And we also provide our processed training/development/test set for the task. To train the model (here we take the Tamil dataset as an example), run (please refer to [config](https://github.com/Alibaba-NLP/MultilangStructureKD/tree/master/config) for config files of other languages):
+To reproduce [our results](https://arxiv.org/abs/2004.03846) on EUD Parsing, we provide the [conversion scripts](https://universaldependencies.org/iwpt20/task_and_evaluation.html) for the official dataset. And we also provide our processed training/development/test set for the task. To train the model (here we take the Tamil dataset as an example), run (please refer to `config` for config files of other languages):
 
 ```
 python train_with_teacher.py --config config/xlmr_word_origflair_1000epoch_0.1inter_2000batch_0.002lr_400hidden_ta_monolingual_nocrf_fast_2nd_unrel_250upsample_nodev_enhancedud27.yaml
@@ -122,12 +119,10 @@ python train_with_teacher.py --config config/xlmr_word_origflair_1000epoch_0.1in
 As we described in the paper, we use the labeled F1 scores (originated from semantic dependency parsing) rather than ELAS for EUD training, therefore if you want to evaluate the ELAS score, first parse the graphs:
 
 ```
-python train_with_teacher.py --config config/xlmr_word_origflair_1000epoch_0.1inter_2000batch_0.002lr_400hidden_ta_monolingual_nocrf_fast_2nd_unrel_250upsample_nodev_enhancedud27.yaml --parse --target_dir iwpt2020_test/ta --keep_order --batch_size 1000 --mst
+python train_with_teacher.py --config config/xlmr_word_origflair_1000epoch_0.1inter_2000batch_0.002lr_400hidden_ta_monolingual_nocrf_fast_2nd_unrel_250upsample_nodev_enhancedud27.yaml --parse --target_dir iwpt2020_test/ta --keep_order --batch_size 1000
 ```
 
-Then evaluate the result by the official script [here](https://github.com/Alibaba-NLP/MultilangStructureKD/tree/master/EUD)
-
-Note that the official evaluation script does not check the connectivity, if you go strict process of official submission, please fix other [validation issues](https://universaldependencies.org/iwpt20/task_and_evaluation.html) manually. But for the ELAS, the connectivity does not affect the result a lot.
+Then evaluate the result by the official script: (Note that the official evaluation script does not check the connectivity, if you go strict process of official submission, please fix other [validation issues]() manually. But for the ELAS, the connectivity does not affect the result a lot.)
 
 ### Semantic Dependency Parsing (SDP)
 
@@ -137,13 +132,19 @@ The code for EUD parsing is also applicable for SDP parsing. We provide a PyTorc
 
 ### Write Your Own Config File
 
-We provide a detailed description of our config file in [config](https://github.com/Alibaba-NLP/MultilangStructureKD/tree/master/config).
+We provide a detailed description of our config file in `config`.
+
+### GPU Memory
+
+I have update the code for better GPU utilization, therefore training a multilingual sequence labeling with knowledge distillation only needs 8\~9 GB for the GPU Memory now rather than 14\~15 GB reported in the paper.
+
+---
 
 ## Citing Us
 
 ### For Sequence Labelers
 
-Please cite the following paper when training the **multilingual sequence labeling models**: 
+Please cite the following paper when training the multilingual sequence labeling models: 
 
 ```
 @inproceedings{wang-etal-2020-structure,
@@ -167,7 +168,7 @@ Please cite the following paper when training the **multilingual sequence labeli
 
 ### For Dependency Parsers
 
-If you feel the **second-order semantic dependency parser** helpful, please cite:
+If you feel the second-order semantic dependency parser helpful, please cite:
 
 ```
 @inproceedings{wang-etal-2019-second,
@@ -199,7 +200,7 @@ If you feel the **second-order semantic dependency parser** helpful, please cite
 }
 ```
 
-If you run experiments on **Enhanced Universal Dependencies**, please cite:
+If run experiments on Enhanced Universal Dependencies, please cite:
 
 ```
 @inproceedings{wang-etal-2020-enhanced,
