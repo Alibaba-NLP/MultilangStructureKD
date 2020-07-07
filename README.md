@@ -25,9 +25,9 @@ pip install -r requirements.txt
 
 ### Teacher Models
 
-Let's train multilingual CoNLL named entity recognition (NER) model as an example. First we need to prepare the teacher models by downloading the pretrained teacher models on [google drive (uploading...)]() and put these models in `resources/taggers`. 
+Let's train multilingual CoNLL named entity recognition (NER) model as an example. First we need to prepare the teacher models by downloading the pretrained teacher models on [google drive](https://drive.google.com/drive/folders/1DFmz9KMJS6epm3TAMtL7PNG7IQV_JSAU?usp=sharing) and put these models in `resources/taggers`. 
 
-An alternative way is training the teacher models by your self: 
+An alternative way is training the teacher models by yourself: 
 ```
 python train_with_teacher.py --config config/multi_bert_origflair_300epoch_2000batch_1lr_256hidden_de_monolingual_crf_sentloss_10patience_baseline_nodev_ner0.yaml
 python train_with_teacher.py --config config/multi_bert_origflair_300epoch_2000batch_1lr_256hidden_en_monolingual_crf_sentloss_10patience_baseline_nodev_ner0.yaml
