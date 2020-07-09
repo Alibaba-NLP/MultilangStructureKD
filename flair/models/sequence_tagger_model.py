@@ -161,7 +161,7 @@ class SequenceTagger(flair.nn.Model):
 		self.distill_posterior: bool = distill_posterior
 		self.distill_prob: bool = distill_prob
 		self.distill_emission: bool = distill_emission
-
+		self.token_level_attention: bool = token_level_attention
 		self.rnn_layers: int = rnn_layers
 		self.trained_epochs: int = 0
 		self.embeddings = embeddings

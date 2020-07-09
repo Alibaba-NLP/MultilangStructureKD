@@ -35,7 +35,7 @@ python train_with_teacher.py --config config/multi_bert_origflair_300epoch_2000b
 python train_with_teacher.py --config config/multi_bert_origflair_300epoch_2000batch_1lr_256hidden_nl_monolingual_crf_sentloss_10patience_baseline_nodev_ner0.yaml
 ```
 
-### Training the Multilingual Model
+### Training the Multilingual Model without M-BERT finetuning
 
 #### Knowledge Distillation
 
@@ -66,6 +66,9 @@ python train_with_teacher.py --config config/multi_bert_300epoch_0.5anneal_2000b
 python train_with_teacher.py --config config/multi_bert_300epoch_0.5anneal_2000batch_0.1lr_600hidden_multilingual_crf_sentloss_10patience_distill_fast_1best_old_relearn_nodev_fast_new_ner0.yaml
 ```
 
+---
+
+### Training the Multilingual Model with M-BERT finetuning
 
 #### Finetuning M-BERT **without** the CRF layer
 
@@ -82,6 +85,26 @@ The key for finetuning M-BERT with the CRF layer is setting a larger learning ra
 ```
 python train_with_teacher.py --config config/multi_bert_10epoch_2000batch_0.00005lr_10000lrrate_5decay_800hidden_multilingual_crf_sentloss_baseline_fast_finetune_relearn_nodev_ner0.yaml
 ```
+
+---
+
+**Posterior distillation**
+To distill the posterior distribution with finetuning M-BERT model, run:
+```
+python train_with_teacher.py --config config_gen/multi_bert_10epoch_10anneal_2000batch_0.00005lr_10000lrrate_5decay_800hidden_multilingual_crf_sentloss_distill_posterior_4temperature_fast_finetune_relearn_nodev_ner1.yaml
+```
+
+---
+
+#### Performance
+
+Performance on CoNLL-02/03 NER with finetuning M-BERT are (average over 3 runs):
+
+|Finetune|CRF|Knowledge Distillation|English|Dutch|Spanish|German|Average|
+|-----|-----------|------------|----------|----------------------|-------|-------|
+|:heavy_check_mark:|:x:|:x:|91.09|90.34|87.88|82.59|89.97
+|:heavy_check_mark:|:heavy_check_mark:|:x:|91.47|90.97|88.15|82.80|88.35|
+|:heavy_check_mark:|:heavy_check_mark:|Posterior|**91.63**|**91.38**|**88.78**|**83.21**|**88.75**|
 
 <!-- #### Model Performance
 
