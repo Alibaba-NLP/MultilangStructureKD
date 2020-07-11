@@ -103,7 +103,7 @@ Performance on CoNLL-02/03 NER with finetuning M-BERT are (average over 3 runs):
 
 |Finetune|CRF|Knowledge Distillation|English|Dutch|Spanish|German|Average|
 |-----|-----------|------------|----------|----------------------|-------|-------|-------|
-|:heavy_check_mark:|:x:|:x:|91.09|90.34|87.88|82.59|89.97|
+|:heavy_check_mark:|:x:|:x:|91.09|90.34|87.88|82.59|87.97|
 |:heavy_check_mark:|:heavy_check_mark:|:x:|91.47|90.97|88.15|82.80|88.35|
 |:heavy_check_mark:|:heavy_check_mark:|Posterior|**91.63**|**91.38**|**88.78**|**83.21**|**88.75**|
 
