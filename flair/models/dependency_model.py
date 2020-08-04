@@ -447,6 +447,8 @@ class SemanticDependencyParser(flair.nn.Model):
 			tag_type=state["tag_type"],
 			use_crf=state["use_crf"],
 			use_rnn=state["use_rnn"],
+			tree=state["tree"],
+			punct=state["punct"],
 			train_initial_hidden_state=state["train_initial_hidden_state"],
 			n_mlp_arc = state["n_mlp_arc"],
 			n_mlp_rel = state["n_mlp_rel"],
@@ -483,6 +485,8 @@ class SemanticDependencyParser(flair.nn.Model):
 			"tag_type":self.tag_type,
 			"use_crf": self.use_crf,
 			"use_rnn":self.use_rnn,
+			"tree":self.tree,
+			"punct":self.punct,
 			"train_initial_hidden_state": self.train_initial_hidden_state,
 			"n_mlp_arc": self.n_mlp_arc,
 			"n_mlp_rel": self.n_mlp_rel,
@@ -1128,7 +1132,7 @@ class SemanticDependencyParser(flair.nn.Model):
 			# decode_time+=decode_end-decode_start
 			# ignore all punctuation if not specified
 
-			if not self.punct and out_path is None :
+			if not self.punct:
 				for sent_id,sentence in enumerate(batch):
 					for token_id, token in enumerate(sentence):
 						upos=token.get_tag('upos').value
