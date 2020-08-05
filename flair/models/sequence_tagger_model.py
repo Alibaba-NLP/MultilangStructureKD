@@ -97,7 +97,7 @@ class SequenceTagger(flair.nn.Model):
 		use_rnn: bool = True,
 		use_cnn: bool = False,
 		rnn_layers: int = 1,
-		dropout: float = 0.5,
+		dropout: float = 0.0,
 		word_dropout: float = 0.05,
 		locked_dropout: float = 0.5,
 		train_initial_hidden_state: bool = False,

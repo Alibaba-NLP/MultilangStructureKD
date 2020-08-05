@@ -1020,9 +1020,6 @@ class SemanticDependencyParser(flair.nn.Model):
 						lfn += n_false_negatives
 
 						eval_loss += loss
-						eval_loss /= batch_no
-						UF1=self.compute_F1(utp,ufp,ufn)
-						LF1=self.compute_F1(ltp,lfp,lfn)
 
 					if out_path is not None:
 						masked_arc_scores = arc_scores.masked_fill(~binary_mask.bool(), float(-1e9))
@@ -1074,7 +1071,9 @@ class SemanticDependencyParser(flair.nn.Model):
 								)
 								lines.append(eval_line)
 							lines.append("\n")
-
+				eval_loss /= batch_no
+				UF1=self.compute_F1(utp,ufp,ufn)
+				LF1=self.compute_F1(ltp,lfp,lfn)
 				if out_path is not None:
 					with open(out_path, "w", encoding="utf-8") as outfile:
 						outfile.write("".join(lines))
