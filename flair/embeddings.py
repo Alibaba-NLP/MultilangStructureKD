@@ -2600,15 +2600,15 @@ class BertEmbeddings(TokenEmbeddings):
         # self.model.eval()
         if not self.fine_tune:
             self.model.eval()
-        sequence_output, pooled_output, all_encoder_layers = self.model(all_input_ids, token_type_ids=None, attention_mask=all_input_masks)
-        # gradients are enable if fine-tuning is enabled
-        if not hasattr(self,'sentence_feat'):
-            self.sentence_feat=False
-        if self.sentence_feat:
-            self.pooled_output=pooled_output
         gradient_context = torch.enable_grad() if self.fine_tune else torch.no_grad()
 
         with gradient_context:
+            sequence_output, pooled_output, all_encoder_layers = self.model(all_input_ids, token_type_ids=None, attention_mask=all_input_masks)
+            # gradients are enable if fine-tuning is enabled
+            if not hasattr(self,'sentence_feat'):
+                self.sentence_feat=False
+            if self.sentence_feat:
+                self.pooled_output=pooled_output
 
             for sentence_index, sentence in enumerate(sentences):
 
