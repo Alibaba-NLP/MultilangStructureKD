@@ -1029,9 +1029,12 @@ class SequenceTagger(flair.nn.Model):
 
 		return alpha
 
-	def _backward_alg(self, feats, lens_):
+	def _backward_alg(self, feats, lens_, T = 1, distill_mode=True):
 		# reverse the transitions
-		bw_transitions=self.transitions.transpose(0,1)
+		if self.enhanced_crf:
+			bw_transitions=self.enhanced_transitions.transpose(1,2)
+		else:
+			bw_transitions=self.transitions.transpose(0,1)
 		# n * m * d
 		reversed_feats = torch.zeros_like(feats)
 		
@@ -1040,7 +1043,7 @@ class SequenceTagger(flair.nn.Model):
 			reversed_feats[i][:lens_[i]] = feat[:lens_[i]].flip([0])
 			# reverse_feats[i][:lens_[i]] = feat[:lens_[i]].filp(0)
 		
-		init_alphas = torch.FloatTensor(self.tagset_size).fill_(-10000.0)
+		init_alphas = torch.FloatTensor(self.tagset_size).fill_(-1e12)
 		init_alphas[self.tag_dictionary.get_idx_for_item(STOP_TAG)] = 0.0
 		
 		forward_var = torch.zeros(
@@ -1051,16 +1054,25 @@ class SequenceTagger(flair.nn.Model):
 			device=flair.device,
 		)
 		forward_var[:, 0, :] = init_alphas[None, :].repeat(reversed_feats.shape[0], 1)
-		
-		transitions = bw_transitions.view(
-			1, bw_transitions.shape[0], bw_transitions.shape[1]
-		).repeat(reversed_feats.shape[0], 1, 1)
+		if self.enhanced_crf:
+			transitions = bw_transitions
+		else:
+			transitions = bw_transitions.view(
+				1, bw_transitions.shape[0], bw_transitions.shape[1]
+			).repeat(reversed_feats.shape[0], 1, 1)
+
+		if T!=1:
+			transitions = transitions/T
+			reversed_feats = reversed_feats/T
 
 		for i in range(reversed_feats.shape[1]):
-			emit_score = reversed_feats[:, i, :]
-
+			if i == 0:
+				emit_score = torch.zeros_like(reversed_feats[:, 0, :])
+			else:
+				emit_score = reversed_feats[:, i-1, :]
+			# pdb.set_trace()
 			tag_var = (
-				emit_score[:, :, None].repeat(1, 1, transitions.shape[2])
+				emit_score[:, None, :].repeat(1, transitions.shape[2], 1)
 				+ transitions
 				+ forward_var[:, i, :][:, :, None]
 				.repeat(1, 1, transitions.shape[2])
@@ -1080,20 +1092,27 @@ class SequenceTagger(flair.nn.Model):
 
 			forward_var = cloned
 		# if self.distill_posterior:
-		backward_var = forward_var[:,1:].clone()
-		new_backward_var = torch.zeros_like(backward_var)
-		for i, var in enumerate(backward_var):
-			
-			# flip over tokens, [num_tokens * num_tags]
-			new_backward_var[i,:lens_[i]] = var[:lens_[i]].flip([0])
-			
-		return new_backward_var
-		# for 
+		if distill_mode:
+			backward_var = forward_var[:,1:].clone()
+			new_backward_var = torch.zeros_like(backward_var)
+			for i, var in enumerate(backward_var):
+				
+				# flip over tokens, [num_tokens * num_tags]
+				new_backward_var[i,:lens_[i]] = var[:lens_[i]].flip([0])
+				
+			return new_backward_var
+
 		forward_var = forward_var[range(forward_var.shape[0]), lens_, :]
-		
-		terminal_var = forward_var + bw_transitions[
-			self.tag_dictionary.get_idx_for_item(START_TAG)
-		][None, :].repeat(forward_var.shape[0], 1)
+		if self.enhanced_crf:
+			assert 0, 'not implementated'
+			terminal_var = forward_var + bw_transitions[:,
+				self.tag_dictionary.get_idx_for_item(START_TAG)
+			]
+		else:
+			# pdb.set_trace()
+			terminal_var = forward_var + bw_transitions[
+				self.tag_dictionary.get_idx_for_item(START_TAG)
+			][None, :].repeat(forward_var.shape[0], 1) + reversed_feats[range(reversed_feats.shape[0]), lens_-1, :]/T
 
 		alpha = log_sum_exp_batch(terminal_var)
 
