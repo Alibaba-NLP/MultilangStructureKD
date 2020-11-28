@@ -15,11 +15,9 @@ In this repo, we include the following attributes:
 
 ### Requirements and Installation
 
-The project is based on PyTorch 1.1+ and Python 3.6+. We create the virtual environment based on [anaconda](https://www.anaconda.com/) (The requirements are directly extracted from my environment, therefore there exists some non-essential packages like TensorFlow, we will update the requirements in the future):
+The project is based on PyTorch 1.1+ and Python 3.6+. 
 
 ```
-conda create --name parser --file requirements2.txt
-source activate parser
 pip install -r requirements.txt
 ```
 
