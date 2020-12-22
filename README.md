@@ -27,10 +27,10 @@ Let's train multilingual CoNLL named entity recognition (NER) model as an exampl
 
 An alternative way is training the teacher models by yourself: 
 ```
-python train_with_teacher.py --config config/multi_bert_origflair_300epoch_2000batch_1lr_256hidden_de_monolingual_crf_sentloss_10patience_baseline_nodev_ner0.yaml
-python train_with_teacher.py --config config/multi_bert_origflair_300epoch_2000batch_1lr_256hidden_en_monolingual_crf_sentloss_10patience_baseline_nodev_ner0.yaml
-python train_with_teacher.py --config config/multi_bert_origflair_300epoch_2000batch_1lr_256hidden_es_monolingual_crf_sentloss_10patience_baseline_nodev_ner1.yaml
-python train_with_teacher.py --config config/multi_bert_origflair_300epoch_2000batch_1lr_256hidden_nl_monolingual_crf_sentloss_10patience_baseline_nodev_ner0.yaml
+python train_with_teacher.py --config config/multi_bert_origflair_300epoch_2000batch_0.1lr_256hidden_de_monolingual_crf_sentloss_10patience_baseline_nodev_ner0.yaml
+python train_with_teacher.py --config config/multi_bert_origflair_300epoch_2000batch_0.1lr_256hidden_en_monolingual_crf_sentloss_10patience_baseline_nodev_ner0.yaml
+python train_with_teacher.py --config config/multi_bert_origflair_300epoch_2000batch_0.1lr_256hidden_es_monolingual_crf_sentloss_10patience_baseline_nodev_ner1.yaml
+python train_with_teacher.py --config config/multi_bert_origflair_300epoch_2000batch_0.1lr_256hidden_nl_monolingual_crf_sentloss_10patience_baseline_nodev_ner1.yaml
 ```
 
 ### Training the Multilingual Model without M-BERT finetuning
@@ -89,7 +89,7 @@ python train_with_teacher.py --config config/multi_bert_10epoch_2000batch_0.0000
 **Posterior distillation**
 To distill the posterior distribution with finetuning M-BERT model, run:
 ```
-python train_with_teacher.py --config config_gen/multi_bert_10epoch_10anneal_2000batch_0.00005lr_10000lrrate_5decay_800hidden_multilingual_crf_sentloss_distill_posterior_4temperature_fast_finetune_relearn_nodev_ner1.yaml
+python train_with_teacher.py --config config/multi_bert_10epoch_10anneal_2000batch_0.00005lr_10000lrrate_5decay_800hidden_multilingual_crf_sentloss_distill_posterior_4temperature_fast_finetune_relearn_nodev_ner1.yaml
 ```
 
 ---
