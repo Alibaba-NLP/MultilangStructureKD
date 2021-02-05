@@ -9,31 +9,31 @@ dependency:
   Corpus: UD_English-EWT:UD_Hebrew-HTB:UD_Japanese-GSD:UD_Slovenian-SST:UD_French-Sequoia:UD_Indonesian-GSD:UD_Persian-Seraji:UD_Tamil-TTB:UD_Dutch-LassySmall:UD_German-GSD:UD_Swedish-LinES:UD_Italian-PoSTWITA:UD_Spanish-GSD
   tag_dictionary: resources/taggers/ud_dependency_tags.pkl
   teachers:
-    ? config_gen/multi_bert_word_origflair_1000epoch_0.5inter_3000batch_0.002lr_400hidden_de_monolingual_nocrf_fast_nodev_dependency0.yaml
+    ? config/multi_bert_word_origflair_1000epoch_0.5inter_3000batch_0.002lr_400hidden_de_monolingual_nocrf_fast_nodev_dependency0.yaml
     : UD_German-GSD
-    ? config_gen/multi_bert_word_origflair_1000epoch_0.5inter_3000batch_0.002lr_400hidden_en_monolingual_nocrf_fast_nodev_dependency1.yaml
+    ? config/multi_bert_word_origflair_1000epoch_0.5inter_3000batch_0.002lr_400hidden_en_monolingual_nocrf_fast_nodev_dependency1.yaml
     : UD_English-EWT
-    ? config_gen/multi_bert_word_origflair_1000epoch_0.5inter_3000batch_0.002lr_400hidden_es_monolingual_nocrf_fast_nodev_dependency1.yaml
+    ? config/multi_bert_word_origflair_1000epoch_0.5inter_3000batch_0.002lr_400hidden_es_monolingual_nocrf_fast_nodev_dependency1.yaml
     : UD_Spanish-GSD
-    ? config_gen/multi_bert_word_origflair_1000epoch_0.5inter_3000batch_0.002lr_400hidden_fa_monolingual_nocrf_fast_nodev_dependency0.yaml
+    ? config/multi_bert_word_origflair_1000epoch_0.5inter_3000batch_0.002lr_400hidden_fa_monolingual_nocrf_fast_nodev_dependency0.yaml
     : UD_Persian-Seraji
-    ? config_gen/multi_bert_word_origflair_1000epoch_0.5inter_3000batch_0.002lr_400hidden_fr_monolingual_nocrf_fast_nodev_dependency0.yaml
+    ? config/multi_bert_word_origflair_1000epoch_0.5inter_3000batch_0.002lr_400hidden_fr_monolingual_nocrf_fast_nodev_dependency0.yaml
     : UD_French-Sequoia
-    ? config_gen/multi_bert_word_origflair_1000epoch_0.5inter_3000batch_0.002lr_400hidden_he_monolingual_nocrf_fast_nodev_dependency1.yaml
+    ? config/multi_bert_word_origflair_1000epoch_0.5inter_3000batch_0.002lr_400hidden_he_monolingual_nocrf_fast_nodev_dependency1.yaml
     : UD_Hebrew-HTB
-    ? config_gen/multi_bert_word_origflair_1000epoch_0.5inter_3000batch_0.002lr_400hidden_id_monolingual_nocrf_fast_nodev_dependency1.yaml
+    ? config/multi_bert_word_origflair_1000epoch_0.5inter_3000batch_0.002lr_400hidden_id_monolingual_nocrf_fast_nodev_dependency1.yaml
     : UD_Indonesian-GSD
-    ? config_gen/multi_bert_word_origflair_1000epoch_0.5inter_3000batch_0.002lr_400hidden_it_monolingual_nocrf_fast_nodev_dependency0.yaml
+    ? config/multi_bert_word_origflair_1000epoch_0.5inter_3000batch_0.002lr_400hidden_it_monolingual_nocrf_fast_nodev_dependency0.yaml
     : UD_Italian-PoSTWITA
-    ? config_gen/multi_bert_word_origflair_1000epoch_0.5inter_3000batch_0.002lr_400hidden_ja_monolingual_nocrf_fast_nodev_dependency1.yaml
+    ? config/multi_bert_word_origflair_1000epoch_0.5inter_3000batch_0.002lr_400hidden_ja_monolingual_nocrf_fast_nodev_dependency1.yaml
     : UD_Japanese-GSD
-    ? config_gen/multi_bert_word_origflair_1000epoch_0.5inter_3000batch_0.002lr_400hidden_nl_monolingual_nocrf_fast_nodev_dependency1.yaml
+    ? config/multi_bert_word_origflair_1000epoch_0.5inter_3000batch_0.002lr_400hidden_nl_monolingual_nocrf_fast_nodev_dependency1.yaml
     : UD_Dutch-LassySmall
-    ? config_gen/multi_bert_word_origflair_1000epoch_0.5inter_3000batch_0.002lr_400hidden_sl_monolingual_nocrf_fast_nodev_dependency1.yaml
+    ? config/multi_bert_word_origflair_1000epoch_0.5inter_3000batch_0.002lr_400hidden_sl_monolingual_nocrf_fast_nodev_dependency1.yaml
     : UD_Slovenian-SST
-    ? config_gen/multi_bert_word_origflair_1000epoch_0.5inter_3000batch_0.002lr_400hidden_sv_monolingual_nocrf_fast_nodev_dependency0.yaml
+    ? config/multi_bert_word_origflair_1000epoch_0.5inter_3000batch_0.002lr_400hidden_sv_monolingual_nocrf_fast_nodev_dependency0.yaml
     : UD_Swedish-LinES
-    ? config_gen/multi_bert_word_origflair_1000epoch_0.5inter_3000batch_0.002lr_400hidden_ta_monolingual_nocrf_fast_nodev_dependency1.yaml
+    ? config/multi_bert_word_origflair_1000epoch_0.5inter_3000batch_0.002lr_400hidden_ta_monolingual_nocrf_fast_nodev_dependency1.yaml
     : UD_Tamil-TTB
 embeddings:
   BertEmbeddings:
