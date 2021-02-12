@@ -181,6 +181,8 @@ class SequenceTagger(flair.nn.Model):
 		self.word_map = word_map
 		self.char_map = char_map
 
+		self.enhanced_crf = False
+
 		# dropouts
 		self.use_dropout: float = dropout
 		self.use_word_dropout: float = word_dropout
@@ -1031,10 +1033,7 @@ class SequenceTagger(flair.nn.Model):
 
 	def _backward_alg(self, feats, lens_, T = 1, distill_mode=True):
 		# reverse the transitions
-		if self.enhanced_crf:
-			bw_transitions=self.enhanced_transitions.transpose(1,2)
-		else:
-			bw_transitions=self.transitions.transpose(0,1)
+		bw_transitions=self.transitions.transpose(0,1)
 		# n * m * d
 		reversed_feats = torch.zeros_like(feats)
 		
@@ -1054,12 +1053,10 @@ class SequenceTagger(flair.nn.Model):
 			device=flair.device,
 		)
 		forward_var[:, 0, :] = init_alphas[None, :].repeat(reversed_feats.shape[0], 1)
-		if self.enhanced_crf:
-			transitions = bw_transitions
-		else:
-			transitions = bw_transitions.view(
-				1, bw_transitions.shape[0], bw_transitions.shape[1]
-			).repeat(reversed_feats.shape[0], 1, 1)
+		
+		transitions = bw_transitions.view(
+			1, bw_transitions.shape[0], bw_transitions.shape[1]
+		).repeat(reversed_feats.shape[0], 1, 1)
 
 		if T!=1:
 			transitions = transitions/T
@@ -1103,16 +1100,10 @@ class SequenceTagger(flair.nn.Model):
 			return new_backward_var
 
 		forward_var = forward_var[range(forward_var.shape[0]), lens_, :]
-		if self.enhanced_crf:
-			assert 0, 'not implementated'
-			terminal_var = forward_var + bw_transitions[:,
-				self.tag_dictionary.get_idx_for_item(START_TAG)
-			]
-		else:
-			# pdb.set_trace()
-			terminal_var = forward_var + bw_transitions[
-				self.tag_dictionary.get_idx_for_item(START_TAG)
-			][None, :].repeat(forward_var.shape[0], 1) + reversed_feats[range(reversed_feats.shape[0]), lens_-1, :]/T
+		# pdb.set_trace()
+		terminal_var = forward_var + bw_transitions[
+			self.tag_dictionary.get_idx_for_item(START_TAG)
+		][None, :].repeat(forward_var.shape[0], 1) + reversed_feats[range(reversed_feats.shape[0]), lens_-1, :]/T
 
 		alpha = log_sum_exp_batch(terminal_var)
 
