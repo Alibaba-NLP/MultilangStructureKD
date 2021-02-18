@@ -66,6 +66,13 @@ python train_with_teacher.py --config config/multi_bert_300epoch_0.5anneal_2000b
 
 ---
 
+**Posterior+Top-WK distillation**
+```
+python train_with_teacher.py --config config/multi_bert_300epoch_0.5anneal_2000batch_0.1lr_600hidden_multilingual_crf_sentloss_10patience_distill_fast_crfatt_posterior_4temperature_both_old_relearn_nodev_fast_new_ner1.yaml
+```
+
+---
+
 ### Training the Multilingual Model with M-BERT finetuning
 
 #### Finetuning M-BERT **without** the CRF layer
