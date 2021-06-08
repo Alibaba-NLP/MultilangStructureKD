@@ -79,7 +79,7 @@ parso==0.6.1
 pbr==5.1.3
 pexpect==4.8.0
 pickleshare==0.7.5
-Pillow==7.0.0
+Pillow==8.2.0
 plac==0.9.6
 pluggy==0.13.1
 preshed==2.0.1
