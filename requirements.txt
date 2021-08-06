@@ -97,7 +97,7 @@ python-dateutil==2.8.1
 pytorch-pretrained-bert==0.6.2
 pytorch-transformers==1.1.0
 pytz==2019.3
-PyYAML==5.2
+PyYAML==5.4
 regex==2019.12.20
 requests==2.22.0
 responses==0.12.1
