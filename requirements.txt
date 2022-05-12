@@ -49,7 +49,7 @@ ipython==7.12.0
 ipython-genutils==0.2.0
 itsdangerous==1.1.0
 jedi==0.16.0
-Jinja2==2.11.2
+Jinja2==2.11.3
 jmespath==0.9.4
 joblib==0.14.1
 jsonlines==1.2.0
@@ -97,7 +97,7 @@ python-dateutil==2.8.1
 pytorch-pretrained-bert==0.6.2
 pytorch-transformers==1.1.0
 pytz==2019.3
-PyYAML==5.2
+PyYAML==5.4
 regex==2019.12.20
 requests==2.22.0
 responses==0.12.1
@@ -139,7 +139,7 @@ traitlets==4.3.3
 transformers==3.0.0
 truecase==0.0.11
 Unidecode==1.1.1
-urllib3==1.25.10
+urllib3==1.26.5
 wasabi==0.6.0
 wcwidth==0.1.8
 Werkzeug==0.16.0
