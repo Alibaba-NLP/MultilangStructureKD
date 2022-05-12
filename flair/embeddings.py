@@ -31,7 +31,8 @@ from pytorch_transformers import (
     PreTrainedTokenizer,
     PreTrainedModel,
 )
-
+from transformers import XLNetTokenizer, T5Tokenizer, GPT2Tokenizer, AutoTokenizer, AutoConfig, AutoModel
+import copy
 from transformers import (
     XLMRobertaModel,
     XLMRobertaTokenizer,
